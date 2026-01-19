@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+  "name": "Rapunzel",
+  "version": "1.0.0",
+  "description": "Let down your hair extensions! Automatically load and manage temporary Firefox extensions from a folder.",
+  "author": "Airtime Studio",
+  "homepage_url": "https://github.com/airtimestudio/rapunzel",
+
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  },
+
+  "permissions": [
+    "storage",
+    "nativeMessaging",
+    "notifications"
+  ],
+
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    },
+    "default_title": "Rapunzel",
+    "default_popup": "popup/popup.html"
+  },
+
+  "background": {
+    "scripts": ["background/background.js"],
+    "persistent": false
+  },
+
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "rapunzel@airtimestudio.com",
+      "strict_min_version": "91.0"
+    }
+  }
+}

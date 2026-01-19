@@ -1,0 +1,24 @@
+{
+  "name": "rapunzel-helper",
+  "version": "1.0.0",
+  "description": "Native helper application for Rapunzel Firefox addon",
+  "main": "native-host.js",
+  "scripts": {
+    "install:native": "node install.js",
+    "status": "node install.js status",
+    "uninstall": "node install.js uninstall"
+  },
+  "keywords": [
+    "firefox",
+    "extension",
+    "native-messaging",
+    "web-ext",
+    "rapunzel"
+  ],
+  "author": "Airtime Studio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airtimestudio/rapunzel.git"
+  }
+}

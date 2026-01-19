@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rapunzel Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <img src="../icons/icon-48.png" alt="Rapunzel">
+        <div>
+          <h1>Rapunzel</h1>
+          <p class="subtitle">Let down your hair extensions!</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Setup Guide Section -->
+    <section class="card" id="setup">
+      <h2>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm1 11H9V9h2v4zm0-5H9V6h2v2z"/>
+        </svg>
+        Setup Guide
+      </h2>
+
+      <div class="setup-status" id="setupStatus">
+        <div class="status-item" id="nativeAppStatus">
+          <span class="status-icon pending">&#9675;</span>
+          <span class="status-label">Native Helper App</span>
+          <span class="status-value">Not installed</span>
+        </div>
+        <div class="status-item" id="folderStatus">
+          <span class="status-icon pending">&#9675;</span>
+          <span class="status-label">Extensions Folder</span>
+          <span class="status-value">Not configured</span>
+        </div>
+      </div>
+
+      <div class="setup-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Install Native Helper App</h3>
+            <p>Run the installer script from the Rapunzel folder:</p>
+            <div class="install-instructions">
+              <p><strong>Windows:</strong> Double-click <code>install-windows.bat</code></p>
+              <p><strong>macOS/Linux:</strong> Run <code>./install-unix.sh</code> in terminal</p>
+              <p style="margin-top: 10px; color: #a0a0a0; font-size: 12px;">
+                Or run manually: <code>cd native-app && node install.js</code>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Configure Extensions Folder</h3>
+            <p>Set the folder path where your temporary extensions are located:</p>
+            <div class="folder-input">
+              <input type="text" id="folderPath" placeholder="C:\Users\YourName\Extensions or /home/user/extensions">
+              <button class="btn btn-primary" id="saveFolder">Save</button>
+            </div>
+            <p class="hint">Each subfolder should contain a valid Firefox extension (with manifest.json)</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Test Connection</h3>
+            <p>Verify that everything is working:</p>
+            <button class="btn btn-primary" id="testConnection">
+              Test Native App Connection
+            </button>
+            <div class="test-result" id="testResult" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings Section -->
+    <section class="card">
+      <h2>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10 4.5a1 1 0 0 1 1 1v3.5h3.5a1 1 0 1 1 0 2H11v3.5a1 1 0 1 1-2 0V11H5.5a1 1 0 1 1 0-2H9V5.5a1 1 0 0 1 1-1z"/>
+        </svg>
+        Settings
+      </h2>
+
+      <div class="settings-list">
+        <div class="setting-item">
+          <div class="setting-info">
+            <label for="autoLoadOnStartup">Auto-load extensions on browser startup</label>
+            <p class="setting-description">Automatically load all extensions in your folder when Firefox starts</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="autoLoadOnStartup">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <label for="showNotifications">Show notifications</label>
+            <p class="setting-description">Display notifications when extensions are loaded or unloaded</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="showNotifications" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <label for="watchFolder">Watch folder for changes</label>
+            <p class="setting-description">Automatically detect new extensions added to your folder</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="watchFolder">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manual Loading Section -->
+    <section class="card">
+      <h2>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M3 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3zm2 0v14h10V3H5z"/>
+        </svg>
+        Manual Loading (Fallback)
+      </h2>
+      <p class="section-description">
+        If the native app isn't available, you can still load extensions manually via about:debugging.
+      </p>
+      <button class="btn btn-outline" id="openAboutDebugging">
+        Open about:debugging
+      </button>
+    </section>
+
+    <!-- About Section -->
+    <section class="card">
+      <h2>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm1 12H9v-2h2v2zm0-3H9V6h2v5z"/>
+        </svg>
+        About
+      </h2>
+      <div class="about-info">
+        <p><strong>Rapunzel</strong> v1.0.0</p>
+        <p>Let down your hair extensions! Manage and auto-load temporary Firefox extensions from a designated folder.</p>
+        <div class="links">
+          <a href="https://github.com/airtimestudio/rapunzel" target="_blank">GitHub</a>
+          <a href="https://github.com/airtimestudio/rapunzel/issues" target="_blank">Report Issue</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
